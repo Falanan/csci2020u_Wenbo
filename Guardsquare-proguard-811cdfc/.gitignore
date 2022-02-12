@@ -1,0 +1,8 @@
+.gradle
+.hg/**
+.hgtags
+.idea
+build
+local.properties
+/lib/
+docs/html

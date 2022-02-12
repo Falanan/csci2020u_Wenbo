@@ -1,0 +1,58 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+plugins {
+    id 'com.github.johnrengelman.shadow'
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = "${target}"
+targetCompatibility = "${target}"
+
+sourceSets.main {
+    java {
+        srcDirs = ['src']
+        include '**/*.java'
+    }
+    resources {
+        srcDirs = ['src']
+        include '**/*.properties'
+        include '**/*.gif'
+        include '**/*.png'
+        include '**/*.pro'
+    }
+}
+
+dependencies {
+    implementation project(':base')
+    implementation project(':retrace')
+}
+
+task fatJar(type: ShadowJar) {
+    destinationDirectory.set(file("$rootDir/lib"))
+    archiveFileName.set('proguardgui.jar')
+    from sourceSets.main.output
+    configurations = [project.configurations.runtimeClasspath]
+    manifest {
+        attributes(
+                'Manifest-Version': '1.0',
+                'Main-Class': 'proguard.gui.ProGuardGUI',
+                'Implementation-Version': archiveVersion.get())
+    }
+}
+
+assemble.dependsOn fatJar
+
+afterEvaluate {
+    publishing {
+        publications.getByName(project.name) {
+            pom {
+                description = 'ProGuardGUI is an interface for ProGuard, the free shrinker, optimizer, obfuscator, and preverifier for Java bytecode'
+            }
+        }
+    }
+}
