@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
+<!--      fx:controller="com.example.lab05.HelloController">-->
+<!--    <padding>-->
+<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
+<!--    </padding>-->
+
+<!--    <Label fx:id="welcomeText"/>-->
+<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
+<!--</VBox>-->
+
+
+<?import javafx.collections.*?>
+
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.example.lab05.HelloController">
+
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <TableView fx:id="tableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <columns>
+            <TableColumn fx:id="sid" text="SID"/>
+            <TableColumn fx:id="assignments" text="Assignments"/>
+            <TableColumn fx:id="midterm" text="Midterm" />
+            <TableColumn fx:id="finalExam" text="Final Exam"/>
+            <TableColumn fx:id="finalMark" text="Final Mark"/>
+            <TableColumn fx:id="letterGrade" text="Letter Grade" prefWidth="120" />
+        </columns>
+
+    </TableView>
+
+    <VBox  alignment="bottom_left" GridPane.columnIndex="0"
+          GridPane.rowIndex="2">
+        <HBox>
+            <Label text="SID: " prefWidth="90"/>
+            <TextField fx:id="addSid" promptText="SID" prefWidth="120"/>
+            <Label text="Assignments: " prefWidth="90"/>
+            <TextField fx:id="addAssignments" promptText="Assignments/100" prefWidth="120"/>
+        </HBox>
+        <HBox >
+            <Label text="Midterm: " prefWidth="90"/>
+            <TextField fx:id="addMidterm" promptText="Midterm/100" prefWidth="120"/>
+            <Label text="Final Exam: " prefWidth="90"/>
+            <TextField fx:id="addFinalExam" promptText="Final Exam/100" prefWidth="120"/>
+        </HBox>
+
+
+        <Button text="Add" onAction="#addStudent"/>
+    </VBox>
+
+
+</GridPane>
